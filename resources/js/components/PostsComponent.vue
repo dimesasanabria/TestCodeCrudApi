@@ -6,17 +6,25 @@
           <input v-model="form.name" placeholder="name">
           <input v-model="form.description" placeholder="description">
           <input v-model="form.code" placeholder="code">
-          <input v-model="form.status" placeholder="status">
-          <button @click="createPost">Save</button>
-      
+          <p>
+              <!-- Field label -->
+        <!-- Switch -->
+            <input class="form-check-input" type="checkbox" id="statusSwitch" v-model="form.status" :true-value="'active'" :false-value="'inactive'">
+            <label class="form-check-label" for="statusSwitch">
+              {{ form.status === 'active' ? 'Active' : 'Inactive' }}
+            </label>
+            </p>
+            <button @click="createPost">Save</button>
+          
     <!-- List -->
     <ul>
       <li v-for="post in posts" :key="post.id" class="bg-white rounded-lg shadow-md p-4 hover:shadow-xl transition">
         <h2 class="text-xl font-semibold mb-2">UDDI: {{ post.UDDI }}</h2>
-         <p class="text-gray-700 mb-4">Name: {{ post.name }}</p>
+        <p class="text-gray-700 mb-4">Name: {{ post.name }}</p>
         <p class="text-gray-700 mb-4">Description: {{ post.description }}</p>
         <p class="text-gray-700 mb-4">code: {{ post.code }}</p>
-        <p class="text-gray-700 mb-4">status: {{ post.status }}</p>
+        <p class="text-gray-700 mb-4">Status: {{ post.status }}</p>
+           <!-- scroll active -->
         <button @click="editPost(post)"class="btn btn-primary me-2">Edit</button>
         <button @click="deletePost(post.id)"class="btn btn-danger">Delete</button>
       </li>
